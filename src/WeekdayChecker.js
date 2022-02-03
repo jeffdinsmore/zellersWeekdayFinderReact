@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 function WeekdayChecker(props) {
@@ -32,7 +32,7 @@ function WeekdayChecker(props) {
 
   function checkLeapYear() {
     let yearInt = parseInt(year);
-    if ((yearInt % 4 === 0) && (yearInt % 100 !== 0) || (yearInt % 400 === 0)) {
+    if (yearInt % 4 === 0 && yearInt % 100 !== 0 || yearInt % 400 === 0) {
       return true;
     } else {
       return false;
