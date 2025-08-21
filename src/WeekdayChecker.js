@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function WeekdayChecker(props) {
-  const { day, month, year } = props;
+  const { day, month, year, century } = props;
   const weekdayArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const monthArray = ['March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February'];
   const thirtyDays = { '2': true, '4': true, '7': true, '9': true };
@@ -20,12 +20,13 @@ function WeekdayChecker(props) {
       //let years = 
       let days = parseInt(day);
       let months = parseInt(month);
-      let century = parseInt(year.substring(0, 2));
+      //let century = parseInt(year.substring(0, 2));
+      let centuries = century;
       let twoDigitYear = parseInt(year.slice(-2));
       if (months === 11 || months === 12) {
         twoDigitYear = twoDigitYear - 1;
       }
-      let innerEquation = days + Math.floor((13 * months - 1) / 5) + twoDigitYear + Math.floor(twoDigitYear / 4) + Math.floor(century / 4) - (2 * century);
+      let innerEquation = days + Math.floor((13 * months - 1) / 5) + twoDigitYear + Math.floor(twoDigitYear / 4) + Math.floor(centuries / 4) - (2 * centuries);
       if (innerEquation < 0 && innerEquation > -7) {
         innerEquation = innerEquation + 7;
       }

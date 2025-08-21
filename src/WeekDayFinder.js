@@ -6,33 +6,24 @@ function WeekDayFinder() {
   const [properties, setProperties] = useState({});
   function handleFormSubmit(e) {
     e.preventDefault();
-    let years = e.target.yearInput.value;
-    if (years.length === 1) {
-      let years = e.target.yearInput.value;
-      if (years.length === 1) {
-        years = "000" + years;
-      } else if (years.length === 2) {
-        years = "00" + years;
-      } else if (years.length === 3) {
-        years = "0" + years;
-      }
+    let centuries;
+    let years = (e.target.yearInput.value).replace(/^0+/, "") || "0";
+    if (years.length > 3) {
+      centuries = years.slice(0,2);
+    } else if (years.length === 1) {
+      centuries = 0;
+    } else if (years.length === 2) {
+      centuries = 0;
+    } else if (years.length === 3) {
+      centuries = years.slice(0,1);
+    }
       const properties = {
         month: e.target.monthInput.value,
         day: e.target.dayInput.value,
         year: years,
+        century: centuries,
       }
-      setProperties(properties); years = "000" + years;
-    } else if (years.length === 2) {
-      years = "00" + years;
-    } else if (years.length === 3) {
-      years = "0" + years;
-    }
-    const properties = {
-      month: e.target.monthInput.value,
-      day: e.target.dayInput.value,
-      year: years,
-    }
-    setProperties(properties);
+      setProperties(properties); 
   }
   
   return (
@@ -80,7 +71,7 @@ function WeekDayFinder() {
           <br></br><br />
           <button type="submit" className="btn btn-info">What day of the week was it?</button>
         </form>
-        <WeekdayChecker month={properties.month} day={properties.day} year={properties.year} />
+        <WeekdayChecker month={properties.month} day={properties.day} year={properties.year} century={properties.century}/>
       </div>
     </React.Fragment>
   );
